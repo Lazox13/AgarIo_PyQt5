@@ -1,20 +1,13 @@
 import pygame
 import core
 
-
 from Creep import Creep
 from Ennemi import Ennemi
 from Joueur import Joueur
 from TableauDesScores import TableauDesScores
 
-print("test")
 
-from gui_main import MenuParam
-
-
-
-# def afficher_contenu_memory(dico):
-#     return [print(f'clef: {k}, valeur: {v}') for k, v in dico.items()]
+from FenPrincipale import FenPrincipale
 
 
 def setup():
@@ -23,9 +16,10 @@ def setup():
     core.fps = 60
     core.WINDOW_SIZE = [1080, 720]
 
-    # TEST AVEC PC MATEO
-    Menu = MenuParam()
-    print(int(Menu.nbennemis))
+    # Menu principal
+
+    menu = FenPrincipale()
+    print(int(menu.nbennemis))
 
     # INITIALISATIONS VARIABLES INDÉPENDANTES DU JOUEUR
 
@@ -45,9 +39,9 @@ def setup():
         core.memory("TableauDeCreeps").append(Creep())
 
     # Ennemis
-    #core.memory("nb_ennemis", input("nombre d'ennemis : "))
+    # core.memory("nb_ennemis", input("nombre d'ennemis : "))
     core.memory("TableauEnnemis", [])
-    for i in range(int(Menu.nbennemis)):
+    for i in range(5):
         core.memory("TableauEnnemis").append(Ennemi())
 
     # Taille de la grille
@@ -108,17 +102,21 @@ def setup():
                 core.memory("couleurpolicescore", (0, 0, 0))
                 core.memory("couleurgrille", (150, 150, 150))
 
-
-
     print("\n"
           "========== Chargement terminé ! =========="
           "\n")
+
     # Affichage de tout le dictionnaire
-    #afficher_contenu_memory(core.memory("affichage_dico", "Dico affiché"))
+    afficher_contenu_memory(core.memory("affichage_dico", "Dico affiché"))
 
     print(f'\n'
           f'Démarrage de la partie de {core.memory("PseudoChoisi")}'
           f'\n')
+
+
+def afficher_contenu_memory(dico):
+    return [print(f'clef: {k}, valeur: {v}, type:{type(v)}') for k, v in dico.items()]
+
 
 def run():
     core.cleanScreen()
@@ -217,7 +215,7 @@ def run():
     core.screen.blit(core.memory("TextTabScores"), (8, 78))
 
     if core.memory("Joueur").rayon == 150:
-        print("Fin de la partie de", core.memory("PseudoChoisi"), "\n")
+        print(f'Fin de la partie de {core.memory("PseudoChoisi")} \n')
         exit("BARVO: Vous avez atteint le rayon maximum!")
 
 

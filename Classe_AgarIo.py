@@ -14,6 +14,8 @@ from TableauDesScores import TableauDesScores
 class AgarIo:
     def __init__(self):
 
+        self.contenu_dico = core.memory("contenu_dico", 1)
+
         self.ecran_jeu = core.screen
         self.fps = core.fps = 60
         self.dim_fenetre = core.WINDOW_SIZE = [1080, 720]
